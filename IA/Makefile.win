@@ -1,0 +1,36 @@
+# Project: IA
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = IA_private.res
+OBJ  = IA.o LimpaTela.o $(RES)
+LINKOBJ  = IA.o LimpaTela.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib"  
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = IA.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before IA.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "IA.exe" $(LIBS)
+
+IA.o: IA.c
+	$(CC) -c IA.c -o IA.o $(CFLAGS)
+
+LimpaTela.o: LimpaTela.c
+	$(CC) -c LimpaTela.c -o LimpaTela.o $(CFLAGS)
+
+IA_private.res: IA_private.rc 
+	$(WINDRES) -i IA_private.rc --input-format=rc -o IA_private.res -O coff 
